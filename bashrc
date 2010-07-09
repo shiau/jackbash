@@ -156,7 +156,6 @@ alias rcopy='rsync -az --stats --progress --delete'
 alias ..='cl ..'
 alias trim_whitespace="sed -i 's/[ \t]*$//' "
 alias sush='sudo ssh'
-alias http_headers='curl -svo /dev/null'
 
 # Auto completion
 complete -cf sudo
@@ -312,7 +311,7 @@ source $HOME/.bash/config/git-completion.bash
 ###### PROMPT ######
 # Set up the prompt colors
 source $HOME/.bash/term_colors
-PROMPT_COLOR=$G
+PROMPT_COLOR=$W
 if [ ${UID} -eq 0 ]; then
   PROMPT_COLOR=$R ### root is a red color prompt
 fi
@@ -325,9 +324,12 @@ fi
 # (5) Color highlight out the current directory because it's important
 # (6) The export PS1 is simple to understand!
 # (7) If the prev command error codes, the prompt '>' turns red
-export PS1="$Y\t$N $W"'$(__git_ps1 "(%s) ")'"$N$PROMPT_COLOR\u@\H$N:$C\w$N\n"'$CURSOR_PROMPT '
+export PS1="$N\t $W"'$(__git_ps1 "(%s) ")'"$N[$PROMPT_COLOR\u@\h$N $MY\W$N"'$CURSOR_PROMPT '
 # TODO: Find out why my $R and $N shortcuts don't work here!!!
-export PROMPT_COMMAND='if [ $? -ne 0 ]; then CURSOR_PROMPT=`echo -e "\033[0;31m>\033[0m"`; else CURSOR_PROMPT=">"; fi;'
+export PROMPT_COMMAND='if [ $? -ne 0 ]; then CURSOR_PROMPT=`echo -e ">"`; else CURSOR_PROMPT="]"; fi'
+
+# Set up autojump; appends $PROMPT_COMMAND
+source $HOME/.bash/config/autojump.bash
 
 #### Source group
 GROUP_FILE="$HOME/.bash/group/group.bash"
@@ -342,6 +344,7 @@ then
   source $PERHOST_FILE  
 fi;
 
+source 'path_vars'
 # remove duplicate path entries and preserve PATH order
 export PATH=$(echo $PATH | awk -F: '
 { start=0; for (i = 1; i <= NF; i++) if (!($i in arr) && $i) {if (start!=0) printf ":";start=1; printf "%s", $i;arr[$i]}; }
