@@ -324,9 +324,9 @@ fi
 # (5) Color highlight out the current directory because it's important
 # (6) The export PS1 is simple to understand!
 # (7) If the prev command error codes, the prompt '>' turns red
-export PS1="$N\t $W"'$(__git_ps1 "(%s) ")'"$N[$PROMPT_COLOR\u@\h$N $MY\W$N"'$CURSOR_PROMPT '
+export PS1="$N\t$W|"'$(__git_ps1 " (%s) ")'"$PROMPT_COLOR\u@\h$N:$MY\W$N"'$CURSOR_PROMPT '
 # TODO: Find out why my $R and $N shortcuts don't work here!!!
-export PROMPT_COMMAND='if [ $? -ne 0 ]; then CURSOR_PROMPT=`echo -e ">"`; else CURSOR_PROMPT="]"; fi'
+export PROMPT_COMMAND='if [ $? -ne 0 ]; then CURSOR_PROMPT="^"; else CURSOR_PROMPT=" "; fi'
 
 # Set up autojump; appends $PROMPT_COMMAND
 source $HOME/.bash/config/autojump.bash
@@ -344,7 +344,7 @@ then
   source $PERHOST_FILE  
 fi;
 
-source 'path_vars'
+source $HOME/.bash/path_vars
 # remove duplicate path entries and preserve PATH order
 export PATH=$(echo $PATH | awk -F: '
 { start=0; for (i = 1; i <= NF; i++) if (!($i in arr) && $i) {if (start!=0) printf ":";start=1; printf "%s", $i;arr[$i]}; }
