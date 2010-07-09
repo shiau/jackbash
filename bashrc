@@ -326,7 +326,7 @@ fi
 # (7) If the prev command error codes, the prompt '>' turns red
 export PS1="$N\t $W"'$(__git_ps1 "(%s) ")'"$N[$PROMPT_COLOR\u@\h$N $MY\W$N"'$CURSOR_PROMPT '
 # TODO: Find out why my $R and $N shortcuts don't work here!!!
-export PROMPT_COMMAND='if [ $? -ne 0 ]; then CURSOR_PROMPT=`echo -e "\033[0;31m]\033[0m"`; else CURSOR_PROMPT="]"; fi'
+export PROMPT_COMMAND='if [ $? -ne 0 ]; then CURSOR_PROMPT=`echo -e ">"`; else CURSOR_PROMPT="]"; fi'
 
 # Set up autojump; appends $PROMPT_COMMAND
 source $HOME/.bash/config/autojump.bash
