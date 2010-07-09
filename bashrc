@@ -311,7 +311,7 @@ source $HOME/.bash/config/git-completion.bash
 ###### PROMPT ######
 # Set up the prompt colors
 source $HOME/.bash/term_colors
-PROMPT_COLOR=$G
+PROMPT_COLOR=$W
 if [ ${UID} -eq 0 ]; then
   PROMPT_COLOR=$R ### root is a red color prompt
 fi
@@ -324,9 +324,9 @@ fi
 # (5) Color highlight out the current directory because it's important
 # (6) The export PS1 is simple to understand!
 # (7) If the prev command error codes, the prompt '>' turns red
-export PS1="$Y\t$N $W"'$(__git_ps1 "(%s) ")'"$N$PROMPT_COLOR\u@\H$N:$C\w$N\n"'$CURSOR_PROMPT '
+export PS1="$N\t $W"'$(__git_ps1 "(%s) ")'"$N[$PROMPT_COLOR\u@\h$N $MY\W$N"'$CURSOR_PROMPT '
 # TODO: Find out why my $R and $N shortcuts don't work here!!!
-export PROMPT_COMMAND='if [ $? -ne 0 ]; then CURSOR_PROMPT=`echo -e "\033[0;31m>\033[0m"`; else CURSOR_PROMPT=">"; fi'
+export PROMPT_COMMAND='if [ $? -ne 0 ]; then CURSOR_PROMPT=`echo -e "\033[0;31m]\033[0m"`; else CURSOR_PROMPT="]"; fi'
 
 # Set up autojump; appends $PROMPT_COMMAND
 source $HOME/.bash/config/autojump.bash
