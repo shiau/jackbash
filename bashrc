@@ -194,7 +194,7 @@ complete -W "$(listmans)" man
 
 #### RANDOM FUNCTIONS #####
 # awesome!  CD AND LA. I never use 'cd' anymore...
-function cl(){ cd "$@" && la; }
+function cl(){ cd "$@" && ls; }
 # Two standard functions to change $PATH
 add_path() { export PATH="$PATH:$1"; }
 add_pre_path() { export PATH="$1:$PATH"; }
