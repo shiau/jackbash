@@ -112,7 +112,11 @@ for x in [ $JAVA_IN_PATH ]; do
   fi
 done
 
-
+#export rails version
+(which rails &> /dev/null)
+if [ $? -eq 0 ]; then
+  export RAILS_GEM_VERSION=`rails -v | awk '{print $2}'`
+fi
 # Compatability options
 # The BSD sed on mac uses -E, while the GNU one on linux uses -r
 (echo '' | sed -r /GG/g &> /dev/null)
@@ -345,7 +349,9 @@ then
   source $PERHOST_FILE  
 fi;
 
+#add other directories to path
 source $HOME/.bash/path_vars
+
 # remove duplicate path entries and preserve PATH order
 export PATH=$(echo $PATH | awk -F: '
 { start=0; for (i = 1; i <= NF; i++) if (!($i in arr) && $i) {if (start!=0) printf ":";start=1; printf "%s", $i;arr[$i]}; }
