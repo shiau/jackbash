@@ -1,4 +1,4 @@
-#escape ^]]                             # set escape to ctrl-].  Emacs friendly
+escape ^jj                             # set escape to ctrl-].  Emacs friendly
 
 # default startup shell
 shell                 bash
