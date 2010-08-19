@@ -53,3 +53,7 @@
   added = yellow
   changed = green
   untracked = cyan
+[merge]
+	summary = true
+[push]
+	default = tracking

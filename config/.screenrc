@@ -26,3 +26,6 @@ hardstatus string "%{= Kw}%-Lw%{=b bw}%50>%n:%t%{= Kw}%+Lw%< %-=%{+ B}%H %{= kG}
 # startup some programs in the appropriate windows
 #screen 2 program
 #screen 0
+screen -t "code" 0
+screen -t "console" 3
+screen -t "term" 5

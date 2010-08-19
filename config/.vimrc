@@ -5,3 +5,4 @@ set hidden
 syntax on
 set ai
 colorscheme ir_black
+call pathogen#runtime_append_all_bundles()
