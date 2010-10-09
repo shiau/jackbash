@@ -160,6 +160,9 @@ alias rcopy='rsync -az --stats --progress --delete'
 alias ..='cl ..'
 alias trim_whitespace="sed -i 's/[ \t]*$//' "
 alias sush='sudo ssh'
+alias gst='git status'
+alias gg='git grep'
+alias gd='git diff'
 
 # Auto completion
 complete -cf sudo
