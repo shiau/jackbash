@@ -360,3 +360,10 @@ export PATH=$(echo $PATH | awk -F: '
 { start=0; for (i = 1; i <= NF; i++) if (!($i in arr) && $i) {if (start!=0) printf ":";start=1; printf "%s", $i;arr[$i]}; }
 END { printf "\n"; } ')
 
+
+if [ ! -f $HOME/.ssh/bash_agent ]
+then
+exec $HOME/.bash/bin/screen-ssh-agent
+exec true
+fi;
+source $HOME/.ssh/bash_agent

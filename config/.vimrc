@@ -4,6 +4,7 @@ set sw=2
 set hidden
 syntax on
 set ai
+set wildignore=public/photos
 colorscheme ir_black
 call pathogen#runtime_append_all_bundles()
 
@@ -21,8 +22,10 @@ endfunction
 
 " Removes trailing spaces
 function Trim_whitespace()
-	%s/\s*$//
-	''
+:undojoin |	%s/\s*$//
+''
 :endfunction
 
 autocmd FileType ruby,eruby autocmd BufWritePre <buffer> :call Trim_whitespace()      
+
+let g:CommandTMatchWindowAtTop=1
