@@ -1,4 +1,4 @@
-escape ^jj                             # set escape to ctrl-].  Emacs friendly
+escape ^jj                             # set escape to ctrl-j
 
 # default startup shell
 shell                 bash
@@ -13,6 +13,7 @@ termcapinfo xterm-color ti@:te@         # Allow terminal scrolling
 defscrollback 10000                     # large scroll back
 startup_message off                     # Turn off the splash screen
 
+bind . sessionname
 # change the hardstatus settings to give an window list at the bottom of the
 # screen, with the time and date and with the current window highlighted 
 hardstatus alwayslastline
@@ -21,8 +22,8 @@ hardstatus alwayslastline
 #hardstatus string '%{= mK}%-Lw%{= KW}%50>%n%f* %t%{= mK}%+Lw%< %{= kG}%-=%H %D %d %M %Y %c:%s%{-}'
 #hardstatus string  '%{= Kw}%-Lw%{=b bW}%50>%n: %t%{= Kw}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
 
-hardstatus string "%{= Kw}%-Lw%{=b bw}%50>%n:%t%{= Kw}%+Lw%< %-=%{+ B}%H %{= kG} %D%d%M%Y %c:%s%{-}"
-
+hardstatus string "%{= Kw}%-Lw%{=b bw}%50>%n:%t%{= Kw}%+Lw%< %-=%{+ B}%H:%` %{= kG} %D%d%M%Y %c:%s%{-}"
+backtick 0 30 30 sh -c 'screen -ls | grep --color=no -o "$PPID[^[:space:]]*" | awk -F . "{print \$2}"'
 # startup some programs in the appropriate windows
 #screen 2 program
 #screen 0

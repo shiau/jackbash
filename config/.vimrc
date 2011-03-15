@@ -1,12 +1,14 @@
 set wildmenu
 set ts=2
 set sw=2
+set et
 set hidden
 syntax on
 set ai
 set wildignore=public/photos
 colorscheme ir_black
 call pathogen#runtime_append_all_bundles()
+map <C-b> :b 
 
 " removes spaces within parens (but not between args)
 function Parens_unpad()
@@ -29,3 +31,4 @@ function Trim_whitespace()
 autocmd FileType ruby,eruby autocmd BufWritePre <buffer> :call Trim_whitespace()      
 
 let g:CommandTMatchWindowAtTop=1
+let g:CommandTMaxFiles=20000
