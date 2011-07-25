@@ -163,6 +163,10 @@ alias sush='sudo ssh'
 alias gst='git status'
 alias gg='git grep'
 alias gd='git diff'
+alias gsu='git submodule update'
+alias b='bundle exec'
+alias dirty='vim $(git diff --name-only)'
+alias util1='ssh dev@util1'
 
 # Auto completion
 complete -cf sudo

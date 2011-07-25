@@ -3,12 +3,15 @@ set ts=2
 set sw=2
 set et
 set hidden
+set hlsearch
 syntax on
 set ai
 set wildignore=public/photos
+set fo+=r
 colorscheme ir_black
 call pathogen#runtime_append_all_bundles()
 map <C-b> :b 
+map <C-a> :Ack! 
 
 " removes spaces within parens (but not between args)
 function Parens_unpad()
@@ -28,7 +31,8 @@ function Trim_whitespace()
 ''
 :endfunction
 
-autocmd FileType ruby,eruby autocmd BufWritePre <buffer> :call Trim_whitespace()      
+autocmd FileType ruby,eruby,javascript autocmd BufWritePre <buffer> :call Trim_whitespace()      
 
-let g:CommandTMatchWindowAtTop=1
+" let g:CommandTMatchWindowAtTop=1
 let g:CommandTMaxFiles=20000
+let g:CommandTMaxHeight=20

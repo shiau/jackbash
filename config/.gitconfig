@@ -9,6 +9,7 @@
   ci = commit
   di = diff
   st = status
+  hd = rev-parse HEAD
   # Show the commits and content in this branch
   showbr = log --pretty=oneline trunk..
   showallbr = log -U trunk ..
@@ -57,3 +58,5 @@
 	summary = true
 [push]
 	default = tracking
+[rerere]
+	enabled = true
