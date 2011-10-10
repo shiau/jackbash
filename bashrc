@@ -147,7 +147,7 @@ shopt -s checkwinsize
 shopt -s histappend   # Append to history rather than overwrite
 
 # Aliases
- alias vi='vim'
+alias vi='vim'
 alias ls='ls -h $LS_COLOR'
 alias la='ls -lah $LS_COLOR'
 alias ll='ls -lh $LS_COLOR'
@@ -372,8 +372,7 @@ fi
 
 if [ ! -f $HOME/.ssh/bash_agent ]
 then
-exec $HOME/.bash/bin/screen-ssh-agent
-exec true
-fi;
+source $HOME/.bash/bin/screen-ssh-agent
+fi
 
 source $HOME/.ssh/bash_agent

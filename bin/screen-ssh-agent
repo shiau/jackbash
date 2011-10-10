@@ -1,4 +1,3 @@
-#!/bin/sh
+#!/bin/bash
 ssh-agent | head -2 | cut -d\; -f1 | sed s/^/export\ /  > $HOME/.ssh/bash_agent
-cat $HOME/.ssh/bash_agent | cut -d\  -f2 | sed s/^/setenv\ / | sed s/=/\ / > $HOME/.ssh/screen_agent
 source $HOME/.ssh/bash_agent
