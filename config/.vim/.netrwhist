@@ -1,7 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/jeff/projects/causes/app/models/achievement'
-let g:netrw_dirhist_2='/home/jeff/projects/causes/app/models/processor/nfg'
-let g:netrw_dirhist_3='/home/jeff/projects/causes/app/helpers/fb'
-let g:netrw_dirhist_4='/home/jeff/projects/causes/app/models'
-let g:netrw_dirhist_5='/home/jeff/.vim/colors'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/jeff/.bash/bin'
+let g:netrw_dirhist_2='/Users/jeff/code/tf/app/assets/images'
+let g:netrw_dirhist_3='/Users/jeff/Code/tf/app/assets/stylesheets/precompile.css.sass.erb'

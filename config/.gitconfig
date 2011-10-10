@@ -31,8 +31,8 @@
 
 # Dear god, please change these if you borrow my gitconfig
 [user]
-  name  = Jeff Shiau
-  email = jeff@causes.com
+  # name  = Jeff Shiau
+  # email = jeff@causes.com
 
 # Show a log of '56 minutes ago' rather than 'November 12, 2008 12:34:53'
 [log]

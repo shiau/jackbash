@@ -71,6 +71,7 @@ export EDITOR=`which vim`
 export SVN_EDITOR=`which vim`
 export GIT_EDITOR=`which vim`
 export PAGER=`which less`
+export CLICOLOR=1
 export LS_COLORS="no=00:\
 fi=00:\
 di=01;36:\
@@ -99,6 +100,7 @@ if [ -f "$HOME/.inputrc" ]; then
   export INPUTRC="$HOME/.inputrc"
 fi;
 export MAN_AUTOCOMP_FILE="/tmp/man_completes_`whoami`"
+export PGDATA=/usr/local/var/postgres/
 
 # export the first java home we find
 (which java &> /dev/null)
@@ -112,11 +114,6 @@ for x in [ $JAVA_IN_PATH ]; do
   fi
 done
 
-#export rails version
-(which rails &> /dev/null)
-if [ $? -eq 0 ]; then
-  export RAILS_GEM_VERSION=`rails -v | awk '{print $2}'`
-fi
 # Compatability options
 # The BSD sed on mac uses -E, while the GNU one on linux uses -r
 (echo '' | sed -r /GG/g &> /dev/null)
@@ -150,6 +147,7 @@ shopt -s checkwinsize
 shopt -s histappend   # Append to history rather than overwrite
 
 # Aliases
+ alias vi='vim'
 alias ls='ls -h $LS_COLOR'
 alias la='ls -lah $LS_COLOR'
 alias ll='ls -lh $LS_COLOR'
@@ -161,12 +159,12 @@ alias ..='cl ..'
 alias trim_whitespace="sed -i 's/[ \t]*$//' "
 alias sush='sudo ssh'
 alias gst='git status'
-alias gg='git grep'
+alias gg='git grep --color'
+alias ggn='git grep --color -n'
 alias gd='git diff'
 alias gsu='git submodule update'
 alias b='bundle exec'
-alias dirty='vim $(git diff --name-only)'
-alias util1='ssh dev@util1'
+alias dirty='vi $(git diff --name-only | uniq)'
 
 # Auto completion
 complete -cf sudo
@@ -322,7 +320,7 @@ source $HOME/.bash/config/git-completion.bash
 ###### PROMPT ######
 # Set up the prompt colors
 source $HOME/.bash/term_colors
-PROMPT_COLOR=$W
+PROMPT_COLOR=$MB
 if [ ${UID} -eq 0 ]; then
   PROMPT_COLOR=$R ### root is a red color prompt
 fi
@@ -336,7 +334,7 @@ fi
 # (6) The export PS1 is simple to understand!
 # (7) If the prev command error codes, the prompt '>' turns red
 
-export PS1="$N\t$W|"'$(__git_ps1 " (%s) ")'"$PROMPT_COLOR\u@\h$N:$MY\W$N"'$CURSOR_PROMPT '
+export PS1="$N\t$Y "'$(__git_ps1 "(%s) ")'"$PROMPT_COLOR\u@\h$N:$W\W$N"'$CURSOR_PROMPT '
 # TODO: Find out why my $R and $N shortcuts don't work here!!!
 export PROMPT_COMMAND='if [ $? -ne 0 ]; then CURSOR_PROMPT="^"; else CURSOR_PROMPT=" "; fi'
 
@@ -365,6 +363,12 @@ export PATH=$(echo $PATH | awk -F: '
 END { printf "\n"; } ')
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+
+#export rails version
+(which rails &> /dev/null)
+if [ $? -eq 0 ]; then
+  export RAILS_GEM_VERSION=`rails -v | awk '{print $2}'`
+fi
 
 if [ ! -f $HOME/.ssh/bash_agent ]
 then
