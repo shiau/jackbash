@@ -1,2 +1,2 @@
-export PATH=${PATH}:/Users/jeff/.dotfiles/bin
+export PATH=${PATH}:/Users/jeff/.dotfiles/bin:/usr/local/Cellar/ec2-ami-tools/1.3-45758/bin:/usr/local/Cellar/ec2-api-tools/1.5.2.3/bin
 

@@ -1,0 +1,3 @@
+#!/bin/bash
+HOST="$(prod-hosts -o web -l 1)"
+ssh -t -t ubuntu@${HOST} "sudo su -c \". /usr/local/etc/threadflip.env; cd ~/threadflip;rails console\" tf"

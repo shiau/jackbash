@@ -165,6 +165,8 @@ alias gd='git diff'
 alias gsu='git submodule update'
 alias b='bundle exec'
 alias dirty='vi $(git diff --name-only | uniq)'
+alias hcon='heroku run console --app threadflip'
+alias hlogs='heroku logs -t --app threadflip'
 
 # Auto completion
 complete -cf sudo
@@ -362,7 +364,10 @@ export PATH=$(echo $PATH | awk -F: '
 { start=0; for (i = 1; i <= NF; i++) if (!($i in arr) && $i) {if (start!=0) printf ":";start=1; printf "%s", $i;arr[$i]}; }
 END { printf "\n"; } ')
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+if test -f ~/.rvm/scripts/rvm; then
+  [ "$(type -t rvm)" = "function" ] || source ~/.rvm/scripts/rvm
+fi
 
 #export rails version
 (which rails &> /dev/null)
@@ -370,9 +375,24 @@ if [ $? -eq 0 ]; then
   export RAILS_GEM_VERSION=`rails -v | awk '{print $2}'`
 fi
 
-if [ ! -f $HOME/.ssh/bash_agent ]
+if [ "x`ps ax |grep ssh-agent |grep -v grep`" == "x" ]
 then
-source $HOME/.bash/bin/screen-ssh-agent
+ssh-agent
+ssh-add $HOME/.ec2/AppExecutoreast.pem
+# source $HOME/.bash/bin/set-ssh-agent
 fi
 
-source $HOME/.ssh/bash_agent
+# if [ ! -f $HOME/.ssh/bash_agent ]
+# then
+# source $HOME/.bash/bin/set-ssh-agent
+# fi
+
+# source $HOME/.ssh/bash_agent
+export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
+export EC2_PRIVATE_KEY="$(/bin/ls $HOME/.ec2/pk-*.pem)"
+export EC2_CERT="$(/bin/ls $HOME/.ec2/cert-*.pem)"
+export EC2_AMITOOL_HOME="/usr/local/Cellar/ec2-ami-tools/1.3-45758/jars"
+export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.5.2.3/jars"
+export AWS_AUTO_SCALING_HOME="/usr/local/Cellar/auto-scaling/1.0.49.1/jars"
+
+export PROD_STACK="prod-cake"

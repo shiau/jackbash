@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for host in `prod-hosts`; do
+
+ssh -i ~/.ec2/AppExecutoreast.pem -t -t ubuntu@${host} "sudo su -c \". /root/bin/quickdeploy.sh\""
+
+done

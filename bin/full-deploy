@@ -1,0 +1,7 @@
+#!/bin/bash
+# IMPORTANT: Source RVM as a function into local environment.
+# #            Otherwise switching gemsets won't work.
+[ -s "$HOME/.rvm/scripts/rvm" ] && . "$HOME/.rvm/scripts/rvm"
+cd ~/code/deploy
+rvm use 1.9.2
+./deploy.rb --branch=master

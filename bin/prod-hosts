@@ -1,0 +1,24 @@
+#!/bin/bash
+# defaults
+if [ -z "$PROD_STACK" ]; then
+  echo 'PROD_STACK is not set'
+  exit 1
+fi
+instance_type='webworker|webserver'
+filter_str=''
+while getopts "o:l:" Option
+do
+  case $Option in
+    o)
+      if [ $OPTARG == "worker" ]; then
+        instance_type="webworker"
+        filter_str="--filter tag:aws:cloudformation:logical-id=ThreadflipWorkerGroup"
+      elif [ $OPTARG == "web" ]; then
+        instance_type="webserver"
+        filter_str="--filter tag:aws:cloudformation:logical-id=ThreadflipWebGroup"
+      fi;;
+    l)
+      limit="-m $OPTARG";;
+  esac
+done
+ec2din --filter instance-state-name=running --filter tag:aws:cloudformation:stack-name=${PROD_STACK} ${filter_str}  | grep $limit INSTANCE | cut -f4

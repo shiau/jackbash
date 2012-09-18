@@ -1,0 +1,4 @@
+#!/bin/bash
+HOST="$(prod-hosts -o web -l 1)"
+ssh ubuntu@${HOST}
+
